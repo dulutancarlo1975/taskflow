@@ -3,27 +3,27 @@
    ========================================================================== */
 
 :root {
-  --c-primary: #2563eb;
-  --c-primary-hover: #1d4ed8;
-  --c-primary-soft: #eff6ff;
-  --c-bg: #f8fafc;
+  --c-primary: #15803d;
+  --c-primary-hover: #166534;
+  --c-primary-soft: #ecfdf3;
+  --c-bg: #f0fdf4;
   --c-surface: #ffffff;
-  --c-text: #0f172a;
-  --c-text-muted: #64748b;
-  --c-border: #e2e8f0;
-  --c-border-strong: #cbd5e1;
+  --c-text: #14532d;
+  --c-text-muted: #4d7c60;
+  --c-border: #d1fae5;
+  --c-border-strong: #a7f3d0;
   --c-error: #b91c1c;
   --c-error-bg: #fef2f2;
-  --c-success: #059669;
-  --c-warning: #d97706;
+  --c-success: #047857;
+  --c-warning: #65a30d;
   --c-danger: #dc2626;
-  --c-badge-pending-bg: #f1f5f9;
-  --c-badge-pending-text: #475569;
-  --c-badge-progress-bg: #dbeafe;
-  --c-badge-progress-text: #1e40af;
-  --c-badge-done-bg: #d1fae5;
-  --c-badge-done-text: #047857;
-  --c-focus: #93c5fd;
+  --c-badge-pending-bg: #f0fdf4;
+  --c-badge-pending-text: #166534;
+  --c-badge-progress-bg: #dcfce7;
+  --c-badge-progress-text: #166534;
+  --c-badge-done-bg: #bbf7d0;
+  --c-badge-done-text: #14532d;
+  --c-focus: #86efac;
   --radius: 12px;
   --radius-sm: 8px;
   --space: 1rem;
@@ -321,7 +321,7 @@ button:active {
 }
 
 .btn-secondary:hover {
-  background: var(--c-border);
+  background: #dcfce7;
 }
 
 .task-actions button.btn-delete {
