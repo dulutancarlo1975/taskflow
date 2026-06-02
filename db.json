@@ -1,0 +1,28 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Set up project structure",
+      "description": "Create folders and files for TaskFlow",
+      "priority": "high",
+      "status": "done",
+      "dueDate": "2026-06-01"
+    },
+    {
+      "id": 2,
+      "title": "Style the task cards",
+      "description": "Apply CSS priority borders and status badges",
+      "priority": "medium",
+      "status": "in-progress",
+      "dueDate": "2026-06-05"
+    },
+    {
+      "id": 3,
+      "title": "Write API fetch functions",
+      "description": "Implement GET, POST, PUT, and DELETE with async/await",
+      "priority": "high",
+      "status": "pending",
+      "dueDate": "2026-06-08"
+    }
+  ]
+}

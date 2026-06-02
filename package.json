@@ -1,0 +1,13 @@
+{
+  "name": "taskflow",
+  "version": "1.0.0",
+  "description": "TaskFlow — transactional task manager (IT0043 lab)",
+  "scripts": {
+    "api": "json-server --watch db.json --port 3000",
+    "serve": "serve . -l 5500"
+  },
+  "devDependencies": {
+    "json-server": "^0.17.4",
+    "serve": "^14.2.4"
+  }
+}
