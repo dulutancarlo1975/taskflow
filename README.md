@@ -11,9 +11,9 @@ TaskFlow is a single integrated project for IT0043 that demonstrates a full CRUD
 
 ## Live URLs (Exam Requirement)
 
-- **Frontend URL:** `[add deployed frontend URL here]`
-- **API URL:** `[add deployed API URL here]`
-- **Repository:** `https://github.com/dulutancarlo1975/taskflow`
+- **Frontend URL:** https://dulutancarlo1975.github.io/taskflow/
+- **API URL:** https://my-json-server.typicode.com/dulutancarlo1975/taskflow/tasks
+- **Repository:** https://github.com/dulutancarlo1975/taskflow
 
 ## Project Structure
 
