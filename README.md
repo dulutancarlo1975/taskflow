@@ -1,5 +1,9 @@
 # TaskFlow - Transactional Task Manager
 
+<p align="center">
+	<img src="images/logo.png" alt="TaskFlow Logo" width="160" />
+</p>
+
 TaskFlow is a single integrated project for IT0043 that demonstrates a full CRUD transactional website using HTML, CSS, Vanilla JavaScript, and a REST API.
 
 ## Student Information
