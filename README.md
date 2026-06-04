@@ -13,7 +13,7 @@ TaskFlow is a single integrated project for IT0043 that demonstrates a full CRUD
 - **Course:** IT0043 Advanced Web Design
 - **School:** FEU Institute of Technology
 
-## Live URLs (Exam Requirement)
+## Live URLs
 
 - **Frontend URL:** https://dulutancarlo1975.github.io/taskflow/
 - **API URL:** https://my-json-server.typicode.com/dulutancarlo1975/taskflow/tasks
