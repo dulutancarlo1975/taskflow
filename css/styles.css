@@ -92,25 +92,20 @@ body {
 .header-brand {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
-.logo-mark {
-  width: 46px;
-  height: 46px;
-  background: linear-gradient(135deg, var(--green-600), var(--green-800));
+.logo-img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
   border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 1.4rem;
-  color: white;
   box-shadow: var(--shadow-md);
   transition: var(--transition);
+  flex-shrink: 0;
 }
 
-.logo-mark:hover {
+.logo-img:hover {
   transform: scale(1.02);
 }
 
@@ -659,7 +654,12 @@ button:focus-visible {
 
 @media (max-width: 480px) {
   .header-brand {
-    align-items: flex-start;
+    align-items: center;
+  }
+
+  .logo-img {
+    width: 56px;
+    height: 56px;
   }
 
   .site-header h1 {
