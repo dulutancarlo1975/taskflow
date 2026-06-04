@@ -6,7 +6,7 @@ TaskFlow is a single integrated project for IT0043 that demonstrates a full CRUD
 
 - **Name:** JOHN CARLO R. DULUTAN
 - **Section:** TW291
-- **Course:** IT0043 - Web Design with Client-Side Scripting
+- **Course:** IT0043 — Advanced Web Design
 - **School:** FEU Institute of Technology
 
 ## Live URLs (Exam Requirement)
