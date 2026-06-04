@@ -21,11 +21,16 @@ const PRIORITY_VALUES = ['low', 'medium', 'high'];
 const STATUS_VALUES = ['pending', 'in-progress', 'done'];
 const STATUS_CYCLE = ['pending', 'in-progress', 'done'];
 
-// Production API (my-json-server from your public GitHub repo)
-const API = 'https://my-json-server.typicode.com/dulutancarlo1975/taskflow/tasks';
+// Use local JSON Server when testing on your machine; otherwise use hosted read API.
+const API =
+  window.location.hostname === 'localhost' ||
+  window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:3000/tasks'
+    : 'https://my-json-server.typicode.com/dulutancarlo1975/taskflow/tasks';
 
-// Local dev only — uncomment for localhost testing:
-// const API = 'http://localhost:3000/tasks';
+function usesPersistedApi() {
+  return API.includes('localhost') || API.includes('127.0.0.1');
+}
 
 // ---------------------------------------------------------------------------
 // State
@@ -382,7 +387,14 @@ async function handleClearCompleted() {
       const res = await fetch(API + '/' + task.id, { method: 'DELETE' });
       if (!res.ok) throw new Error('Failed to delete task #' + task.id);
     }
-    await loadTasks();
+    if (usesPersistedApi()) {
+      await loadTasks();
+    } else {
+      const doneIds = new Set(doneTasks.map(function getId(t) { return t.id; }));
+      tasks = tasks.filter(function notDone(t) { return !doneIds.has(t.id); });
+      renderTasks();
+      showLoading(false);
+    }
   } catch (err) {
     showError(err.message);
     showLoading(false);
@@ -450,7 +462,13 @@ async function addTask(taskObj) {
       body: JSON.stringify(taskObj)
     });
     if (!res.ok) throw new Error('Failed to create task');
-    await loadTasks();
+    if (usesPersistedApi()) {
+      await loadTasks();
+    } else {
+      const created = await res.json();
+      tasks.push(normalizeTask(created));
+      renderTasks();
+    }
     return true;
   } catch (err) {
     showError(err.message);
@@ -466,7 +484,16 @@ async function updateTask(id, updatedObj) {
       body: JSON.stringify(updatedObj)
     });
     if (!res.ok) throw new Error('Failed to update task');
-    await loadTasks();
+    if (usesPersistedApi()) {
+      await loadTasks();
+    } else {
+      const updated = await res.json();
+      const index = tasks.findIndex(function matchId(t) { return t.id === id; });
+      if (index !== -1) {
+        tasks[index] = normalizeTask(updated);
+      }
+      renderTasks();
+    }
     return true;
   } catch (err) {
     showError(err.message);
@@ -478,7 +505,12 @@ async function deleteTask(id) {
   try {
     const res = await fetch(API + '/' + id, { method: 'DELETE' });
     if (!res.ok) throw new Error('Failed to delete task');
-    await loadTasks();
+    if (usesPersistedApi()) {
+      await loadTasks();
+    } else {
+      tasks = tasks.filter(function keepTask(t) { return t.id !== id; });
+      renderTasks();
+    }
     return true;
   } catch (err) {
     showError(err.message);
