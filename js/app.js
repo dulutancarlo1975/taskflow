@@ -1,5 +1,5 @@
 /**
- * TaskFlow — Transactional Task Manager
+ * TaskFlow — Transactional Task Manager (Modern Formal Edition)
  *
  * Concept: Users create, read, update, and delete task records via REST API.
  * Each task is a transaction stored on the server (JSON Server).
@@ -219,7 +219,7 @@ function enterEditMode(task) {
   populateForm(task);
   submitBtn.textContent = 'Update Task';
   cancelEditBtn.hidden = false;
-  formHeading.textContent = 'Edit Task';
+  formHeading.textContent = 'Edit Transaction';
   document.getElementById('title').focus();
 }
 
@@ -228,7 +228,7 @@ function exitEditMode() {
   form.reset();
   submitBtn.textContent = 'Add Task';
   cancelEditBtn.hidden = true;
-  formHeading.textContent = 'Add a Task';
+  formHeading.textContent = 'Create Transaction';
 }
 
 // ---------------------------------------------------------------------------
