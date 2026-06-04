@@ -4,7 +4,8 @@
   "description": "TaskFlow — transactional task manager (IT0043 lab)",
   "scripts": {
     "api": "json-server --watch db.json --port 3000",
-    "serve": "serve . -l 5500"
+    "serve": "serve . -l 5500",
+    "start": "json-server db.json --host 0.0.0.0 --port 10000"
   },
   "devDependencies": {
     "json-server": "^0.17.4",

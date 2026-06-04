@@ -21,8 +21,11 @@ const PRIORITY_VALUES = ['low', 'medium', 'high'];
 const STATUS_VALUES = ['pending', 'in-progress', 'done'];
 const STATUS_CYCLE = ['pending', 'in-progress', 'done'];
 
-// Local dev: JSON Server on port 3000. For Exam, replace with your deployed API URL.
-const API = 'http://localhost:3000/tasks';
+// Production API (my-json-server from your public GitHub repo)
+const API = 'https://my-json-server.typicode.com/dulutancarlo1975/taskflow/tasks';
+
+// Local dev only — uncomment for localhost testing:
+// const API = 'http://localhost:3000/tasks';
 
 // ---------------------------------------------------------------------------
 // State
