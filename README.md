@@ -19,6 +19,11 @@ TaskFlow is a single integrated project for IT0043 that demonstrates a full CRUD
 - **API URL:** https://my-json-server.typicode.com/dulutancarlo1975/taskflow/tasks
 - **Repository:** https://github.com/dulutancarlo1975/taskflow
 
+## Documentation & Submission
+
+- **Google Drive (Recording):** https://drive.google.com/drive/u/0/folders/1eIBsEIDLVXhuYQckKqNXRWukr0fTS_Jz
+- **TaskFlow Documentation (PDF):** [TaskFlow_Documentation.pdf](file:///C:/Users/dulut/OneDrive/Desktop/TaskFlow_Documentation.pdf)
+
 ## Project Structure
 
 ```text
