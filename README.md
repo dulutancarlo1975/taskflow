@@ -103,14 +103,6 @@ Do not open `index.html` directly by double-clicking. Run with a local server so
 - **Act 2:** Full CRUD integration with `fetch()` and JSON Server
 - **Exam:** Live deployment of frontend + API
 
-## Deployment Steps (Exam)
-
-1. Deploy frontend (`index.html`, `css`, `js`) to GitHub Pages, Netlify, or Vercel.
-2. Deploy API (`db.json` with JSON Server or equivalent) to Render, Railway, or another host.
-3. Update `API` constant in `js/app.js` from localhost to deployed API URL.
-4. Verify all 4 methods (GET, POST, PUT, DELETE) on the live app.
-5. Place final Frontend URL and API URL above in this README.
-
 ## Validation Links
 
 - HTML Validator: [https://validator.w3.org/](https://validator.w3.org/)
