@@ -32,6 +32,46 @@ function usesPersistedApi() {
   return API.includes('localhost') || API.includes('127.0.0.1');
 }
 
+const STORAGE_KEY = 'taskflow_tasks';
+
+function sameTaskId(a, b) {
+  return String(a) === String(b);
+}
+
+function saveTasksToBrowser() {
+  if (!usesPersistedApi()) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+    } catch (e) {
+      /* ignore quota errors */
+    }
+  }
+}
+
+function loadTasksFromBrowser() {
+  if (usesPersistedApi()) {
+    return false;
+  }
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) {
+      return false;
+    }
+    tasks = JSON.parse(saved).map(normalizeTask);
+    renderTasks();
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function nextLocalId() {
+  if (tasks.length === 0) {
+    return Date.now();
+  }
+  return Math.max.apply(null, tasks.map(function getId(t) { return Number(t.id) || 0; })) + 1;
+}
+
 // ---------------------------------------------------------------------------
 // State
 // ---------------------------------------------------------------------------
@@ -390,8 +430,11 @@ async function handleClearCompleted() {
     if (usesPersistedApi()) {
       await loadTasks();
     } else {
-      const doneIds = new Set(doneTasks.map(function getId(t) { return t.id; }));
-      tasks = tasks.filter(function notDone(t) { return !doneIds.has(t.id); });
+      const doneIds = new Set(doneTasks.map(function getId(t) { return String(t.id); }));
+      tasks = tasks.filter(function notDone(t) {
+        return !doneIds.has(String(t.id));
+      });
+      saveTasksToBrowser();
       renderTasks();
       showLoading(false);
     }
@@ -437,10 +480,14 @@ function handleCancelEdit() {
 async function loadTasks() {
   try {
     showLoading(true);
+    if (loadTasksFromBrowser()) {
+      return;
+    }
     const res = await fetch(API);
     if (!res.ok) throw new Error('Failed to load tasks');
     const data = await res.json();
     tasks = data.map(normalizeTask);
+    saveTasksToBrowser();
     renderTasks();
   } catch (err) {
     showError(err.message);
@@ -456,17 +503,39 @@ async function loadTasks() {
 
 async function addTask(taskObj) {
   try {
-    const res = await fetch(API, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(taskObj)
-    });
-    if (!res.ok) throw new Error('Failed to create task');
     if (usesPersistedApi()) {
+      const res = await fetch(API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(taskObj)
+      });
+      if (!res.ok) throw new Error('Failed to create task');
       await loadTasks();
+      return true;
+    }
+
+    let created = normalizeTask(Object.assign({ id: nextLocalId() }, taskObj));
+    try {
+      const res = await fetch(API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(taskObj)
+      });
+      if (res.ok) {
+        const body = await res.json();
+        if (body && body.id !== undefined) {
+          created = normalizeTask(body);
+        }
+      }
+    } catch (networkErr) {
+      /* live demo: still save locally if mock API is unreachable */
+    }
+
+    tasks.push(created);
+    saveTasksToBrowser();
+    if (currentFilter !== 'all' && created.status !== currentFilter) {
+      setActiveFilter('all');
     } else {
-      const created = await res.json();
-      tasks.push(normalizeTask(created));
       renderTasks();
     }
     return true;
@@ -478,22 +547,39 @@ async function addTask(taskObj) {
 
 async function updateTask(id, updatedObj) {
   try {
-    const res = await fetch(API + '/' + id, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updatedObj)
-    });
-    if (!res.ok) throw new Error('Failed to update task');
     if (usesPersistedApi()) {
+      const res = await fetch(API + '/' + id, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedObj)
+      });
+      if (!res.ok) throw new Error('Failed to update task');
       await loadTasks();
-    } else {
-      const updated = await res.json();
-      const index = tasks.findIndex(function matchId(t) { return t.id === id; });
-      if (index !== -1) {
-        tasks[index] = normalizeTask(updated);
-      }
-      renderTasks();
+      return true;
     }
+
+    try {
+      const res = await fetch(API + '/' + id, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedObj)
+      });
+      if (res.ok) {
+        const body = await res.json();
+        updatedObj = body && body.id !== undefined ? body : updatedObj;
+      }
+    } catch (networkErr) {
+      /* keep local update */
+    }
+
+    const index = tasks.findIndex(function matchId(t) {
+      return sameTaskId(t.id, id);
+    });
+    if (index !== -1) {
+      tasks[index] = normalizeTask(updatedObj);
+    }
+    saveTasksToBrowser();
+    renderTasks();
     return true;
   } catch (err) {
     showError(err.message);
@@ -503,14 +589,24 @@ async function updateTask(id, updatedObj) {
 
 async function deleteTask(id) {
   try {
-    const res = await fetch(API + '/' + id, { method: 'DELETE' });
-    if (!res.ok) throw new Error('Failed to delete task');
     if (usesPersistedApi()) {
+      const res = await fetch(API + '/' + id, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Failed to delete task');
       await loadTasks();
-    } else {
-      tasks = tasks.filter(function keepTask(t) { return t.id !== id; });
-      renderTasks();
+      return true;
     }
+
+    try {
+      await fetch(API + '/' + id, { method: 'DELETE' });
+    } catch (networkErr) {
+      /* API optional on GitHub Pages; local list is updated below */
+    }
+
+    tasks = tasks.filter(function keepTask(t) {
+      return !sameTaskId(t.id, id);
+    });
+    saveTasksToBrowser();
+    renderTasks();
     return true;
   } catch (err) {
     showError(err.message);
