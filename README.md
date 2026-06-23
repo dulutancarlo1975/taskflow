@@ -4,7 +4,15 @@
 	<img src="images/logo.png" alt="TaskFlow Logo" width="160" />
 </p>
 
-TaskFlow is a single integrated project for IT0043 that demonstrates a full CRUD transactional website using HTML, CSS, Vanilla JavaScript, and a REST API.
+TaskFlow is a single integrated project for IT0043 that demonstrates a full CRUD transactional website using **React**, CSS, and a REST API.
+
+## Framework Used
+
+| Technology | Role |
+|------------|------|
+| **React** | UI components and state management |
+| **React Router** | Client-side routing (6 pages as routes) |
+| **Vite** | Dev server and production build tool |
 
 ## Student Information
 
@@ -28,13 +36,34 @@ TaskFlow is a single integrated project for IT0043 that demonstrates a full CRUD
 
 ```text
 taskflow/
-|-- index.html       # Quiz 1 (HTML structure)
-|-- css/styles.css   # Quiz 2 (CSS presentation)
-|-- js/app.js        # Act 1 + Act 2 (behavior + API CRUD)
-|-- db.json          # JSON Server database
-|-- package.json     # scripts for local API/frontend serving
+|-- index.html              # Vite entry point
+|-- vite.config.js          # Vite + React config
+|-- src/
+|   |-- main.jsx            # React bootstrap
+|   |-- App.jsx             # Routes
+|   |-- pages/              # Landing, Register, Login, Dashboard, About, Contact
+|   |-- components/         # Layout, PageOverview, ProtectedRoute
+|   |-- context/            # AuthContext
+|   |-- services/           # API, auth, tasks
+|   `-- styles/styles.css
+|-- public/images/          # Static assets (logo)
+|-- db.json                 # JSON Server database
+|-- package.json
 `-- README.md
 ```
+
+## Site Pages & Workflow
+
+| Page | Route | Role in workflow |
+|------|-------|------------------|
+| Landing | `/` | Public entry — routes to Register or Login |
+| Registration | `/register` | New user signup → Dashboard |
+| Login | `/login` | Returning user auth → Dashboard |
+| Dashboard | `/dashboard` | Protected CRUD workspace ↔ REST API |
+| About | `/about` | Project info, accessible from all pages |
+| Contact | `/contact` | Inquiry form, accessible from all pages |
+
+Each page includes a **Page Overview** section describing its purpose and system workflow connection.
 
 ## Local Setup and Run Steps
 
@@ -68,12 +97,12 @@ API endpoint:
 http://localhost:3000/tasks
 ```
 
-### 3) Run frontend on a local server
+### 3) Run the React frontend
 
 Open a second terminal in the same folder:
 
 ```bash
-npm run serve
+npm run dev
 ```
 
 Open:
@@ -82,7 +111,13 @@ Open:
 http://localhost:5500
 ```
 
-Do not open `index.html` directly by double-clicking. Run with a local server so `fetch()` works correctly with the API.
+### 4) Build for production (GitHub Pages)
+
+```bash
+npm run build
+```
+
+Output goes to the `dist/` folder. Deploy `dist/` to GitHub Pages for the live site.
 
 ## REST API Contract (Act 2)
 
@@ -110,6 +145,7 @@ Do not open `index.html` directly by double-clicking. Run with a local server so
 - **Quiz 2:** Responsive CSS styling with tokens and states
 - **Act 1:** DOM interaction, add/delete, validation, render function
 - **Act 2:** Full CRUD integration with `fetch()` and JSON Server
+- **React:** Component-based SPA with React Router
 - **Exam:** Live deployment of frontend + API
 
 ## Validation Links
