@@ -4,93 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TaskFlow — Intelligent Task Manager</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="site-header">
-    <div class="header-inner">
-      <div class="header-brand">
-        <img src="images/logo.png" alt="TaskFlow logo" class="logo-img" width="72" height="72">
-        <div>
-          <h1>TaskFlow</h1>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main class="app-main">
-    <section class="form-section" aria-label="Add or edit a task">
-      <div class="section-header">
-        <h2 id="form-heading">Create Transaction</h2>
-        <p class="section-hint">Enter task details. Title is required — all changes sync to the server.</p>
-      </div>
-      <div id="error-msg" class="error-msg" role="alert" hidden></div>
-      <div class="form-panel">
-        <form id="task-form" novalidate>
-          <div class="form-field">
-            <label for="title">Title <span class="required-star">*</span></label>
-            <input type="text" id="title" name="title" required placeholder="e.g., Finalize quarterly report">
-          </div>
-          <div class="form-field">
-            <label for="description">Description</label>
-            <textarea id="description" name="description" placeholder="Add context, deliverables, or notes (optional)"></textarea>
-          </div>
-          <div class="form-row">
-            <div class="form-field">
-              <label for="priority">Priority Level</label>
-              <select id="priority" name="priority">
-                <option value="low">Low</option>
-                <option value="medium" selected>Medium</option>
-                <option value="high">High</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label for="status">Workflow Stage</label>
-              <select id="status" name="status">
-                <option value="pending" selected>Pending</option>
-                <option value="in-progress">In Progress</option>
-                <option value="done">Done</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-field">
-            <label for="dueDate">Due Date</label>
-            <input type="date" id="dueDate" name="dueDate">
-          </div>
-          <div class="form-actions">
-            <button type="submit" id="submit-btn" class="btn-primary">Add Task</button>
-            <button type="button" id="cancel-edit-btn" class="btn-secondary" hidden>Cancel Edit</button>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <section class="list-section" aria-label="Task list">
-      <div class="list-header">
-        <h2>Task Registry</h2>
-        <p class="section-hint">Manage, filter, and track every transaction.</p>
-      </div>
-      <div class="list-toolbar">
-        <div class="filter-group" role="group" aria-label="Filter tasks by status">
-          <button type="button" class="filter-btn is-active" data-filter="all">All Tasks</button>
-          <button type="button" class="filter-btn" data-filter="pending">Pending</button>
-          <button type="button" class="filter-btn" data-filter="in-progress">In Progress</button>
-          <button type="button" class="filter-btn" data-filter="done">Done</button>
-        </div>
-        <button type="button" id="clear-done-btn" class="btn-clear-done">Purge Completed</button>
-      </div>
-      <p id="task-count" class="task-count" aria-live="polite"></p>
-      <div id="loading-indicator" class="loading-indicator" hidden>Loading tasks…</div>
-      <ul id="task-list"></ul>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <p>© 2026 JOHN CARLO R. DULUTAN — IT0043 TaskFlow Enterprise Lab (TW291)</p>
-    <p>FEU Institute of Technology · Modern task architecture</p>
-  </footer>
-
-  <script src="js/app.js" defer></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
