@@ -229,14 +229,6 @@ a.btn-secondary {
   font-weight: 700;
   color: var(--green-800);
   margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.page-overview h2::before {
-  content: '✅';
-  font-size: 1rem;
 }
 
 .overview-grid {
