@@ -329,15 +329,7 @@ a.btn-secondary {
   font-weight: 600;
   color: var(--navy-900);
   margin-bottom: var(--space-4);
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
   letter-spacing: -0.01em;
-}
-
-.page-overview h2::before {
-  content: '✅';
-  font-size: var(--text-base);
 }
 
 .overview-grid {
