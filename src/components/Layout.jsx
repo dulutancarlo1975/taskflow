@@ -17,15 +17,14 @@ export default function Layout() {
         <div className="header-inner">
           <Link to="/" className="header-brand">
             <img
-              src={`${import.meta.env.BASE_URL}images/logo.png`}
-              alt="TaskFlow logo"
+              src={`${import.meta.env.BASE_URL}images/logo2.jpg`}
+              alt="WorkBuddy logo"
               className="logo-img"
               width="72"
               height="72"
             />
             <div>
-              <h1>TaskFlow</h1>
-              <p className="tagline">Intelligent Task Manager</p>
+              <h1>WorkBuddy</h1>
             </div>
           </Link>
           <nav className="site-nav" aria-label="Main navigation">
@@ -44,7 +43,7 @@ export default function Layout() {
               Log In
             </Button>
             <Button variant="primary" size="sm" to="/register">
-              Get Started
+              Sign Up
             </Button>
           </div>
         </div>
@@ -53,8 +52,13 @@ export default function Layout() {
       <Outlet />
 
       <footer className="site-footer ui-footer">
-        <p>© 2026 JOHN CARLO R. DULUTAN — IT0043 TaskFlow Enterprise Lab (TW291)</p>
-        <p>FEU Institute of Technology · React + REST API</p>
+        <div className="footer-content">
+          <div className="footer-branding">
+            <h3>WorkBuddy</h3>
+            <p>WorkBuddy helps individuals and teams organize tasks, track progress, and manage daily responsibilities in one simple platform.</p>
+          </div>
+        </div>
+        <p className="footer-copy">© 2026 JOHN CARLO R. DULUTAN — IT0043 TaskFlow Enterprise Lab (TW291)</p>
       </footer>
     </>
   );

@@ -192,20 +192,7 @@ export default function Tasks() {
 
   return (
     <PageShell className="page-main--app">
-      <PageOverview
-        purpose="The Tasks page provides full task management functionality. Users can create, view, update, delete, filter, and track tasks. All task data is synchronized with the backend database through REST API operations."
-        workflow="Authenticated users navigate here from the Dashboard to perform Create, Read, Update, and Delete operations on task transactions."
-        flowPath={
-          <>
-            <strong>Flow:</strong> Login → Dashboard → <em>Tasks</em> → Create/Edit/Delete/Track Tasks → Database
-          </>
-        }
-      />
 
-      <p className="task-tracking-summary section-hint" aria-live="polite">
-        {!loading &&
-          `Tracking: ${stats.total} total · ${stats.completed} completed · ${stats.pending} pending · ${stats.inProgress} in progress`}
-      </p>
 
       <div className="app-main">
         <section className="form-section ui-section-card" aria-label="Add or edit a task">
@@ -214,7 +201,7 @@ export default function Tasks() {
               {editingId !== null ? 'Edit Transaction' : 'Create Transaction'}
             </h2>
             <p className="section-hint">
-              Enter task details. Title is required — all changes sync to the server.
+              Enter task details. 
             </p>
           </div>
           <Alert variant="error" className="ui-alert--inline">{error}</Alert>
@@ -299,9 +286,7 @@ export default function Tasks() {
               Purge Completed
             </Button>
           </div>
-          <p className="task-count" aria-live="polite">
-            {!loading && renderTaskCount()}
-          </p>
+        
           {loading && <LoadingIndicator message="Loading tasks…" />}
           {!loading && (
             <ul id="task-list" className="ui-task-list">

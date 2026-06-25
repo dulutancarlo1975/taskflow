@@ -18,32 +18,14 @@ export default function Contact() {
 
   return (
     <PageShell centered>
-      <PageOverview
-        purpose="The Contact Page provides a channel for users to send inquiries, feedback, or support requests related to TaskFlow through a structured contact form."
-        workflow="Linked from the global navigation on every page, it serves visitors who need help before or after using the app. Successful submissions confirm receipt and can guide users back to Registration or the Dashboard."
-        flowPath={
-          <>
-            <strong>Flow:</strong> Any Page ↔ <em>Contact</em> → Register/Login → Dashboard
-          </>
-        }
-      />
+  
 
       <section className="content-section" aria-labelledby="contact-heading">
         <ContentPanel split>
           <div>
             <h2 id="contact-heading">Get in Touch</h2>
-            <p className="section-hint">Have a question about TaskFlow? Send us a message.</p>
-            <ul className="info-list contact-details">
-              <li><strong>Developer:</strong> John Carlo R. Dulutan</li>
-              <li><strong>Course:</strong> IT0043 · TW291</li>
-              <li><strong>School:</strong> FEU Institute of Technology</li>
-              <li>
-                <strong>Repository:</strong>{' '}
-                <a href="https://github.com/dulutancarlo1975/taskflow" target="_blank" rel="noopener noreferrer">
-                  github.com/dulutancarlo1975/taskflow
-                </a>
-              </li>
-            </ul>
+            <p className="section-hint">Have a question about WorkBuddy? Send us a message.</p>
+        
           </div>
           <div className="form-panel">
             <Alert variant="success">{success ? 'Thank you! Your message has been received.' : null}</Alert>

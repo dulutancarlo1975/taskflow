@@ -31,21 +31,13 @@ export default function Login() {
 
   return (
     <PageShell centered>
-      <PageOverview
-        purpose="The Login Page authenticates returning users by verifying their email and password against stored credentials, granting access to the protected Dashboard."
-        workflow="Users reach this page from the Landing Page or after logging out. Successful authentication creates a session and redirects to the Dashboard. Invalid credentials show an error without exposing which field failed."
-        flowPath={
-          <>
-            <strong>Flow:</strong> Landing → <em>Login</em> → Dashboard
-          </>
-        }
-      />
+
 
       <section className="auth-section" aria-labelledby="login-heading">
         <AuthPanel
           headingId="login-heading"
           title="Log In"
-          hint="Welcome back — enter your credentials to continue."
+          hint="Please enter your credentials to access your account."
         >
           <Alert variant="error">{error}</Alert>
           <form id="login-form" onSubmit={handleSubmit} noValidate>

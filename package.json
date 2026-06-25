@@ -1,7 +1,7 @@
 {
   "name": "taskflow",
   "version": "1.0.0",
-  "description": "TaskFlow — transactional task manager (IT0043 lab)",
+  "description": "WorkBuddy",
   "type": "module",
   "scripts": {
     "dev": "vite",

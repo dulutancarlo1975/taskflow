@@ -9,12 +9,12 @@
       "id": 1
     },
     {
+      "id": 2,
       "title": "Style the task cards",
       "description": "Apply CSS priority borders and status badges",
       "priority": "medium",
       "status": "pending",
-      "dueDate": "2026-06-05",
-      "id": 2
+      "dueDate": "2026-06-05"
     },
     {
       "title": "Deploy frontend and API",

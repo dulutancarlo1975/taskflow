@@ -38,15 +38,14 @@ export default function AuthenticatedLayout() {
         <div className="sidebar-top">
           <Link to="/dashboard" className="sidebar-brand" onClick={closeMobile}>
             <img
-              src={`${import.meta.env.BASE_URL}images/logo.png`}
-              alt="TaskFlow logo"
+              src={`${import.meta.env.BASE_URL}images/logo2.jpg`}
+              alt="WorkBuddy logo"
               className="logo-img sidebar-logo"
               width="48"
               height="48"
             />
             <div>
-              <h1 className="sidebar-title">TaskFlow</h1>
-              <p className="tagline">Intelligent Task Manager</p>
+              <h1 className="sidebar-title">WorkBuddy</h1>
             </div>
           </Link>
 
@@ -61,6 +60,7 @@ export default function AuthenticatedLayout() {
         </div>
 
         <div className="sidebar-bottom">
+          {user?.name && <p className="sidebar-user-name">{user.name}</p>}
           <Button variant="secondary" block onClick={handleLogout}>
             Log Out
           </Button>
@@ -74,9 +74,12 @@ export default function AuthenticatedLayout() {
             className="sidebar-toggle"
             aria-expanded={mobileOpen}
             aria-controls="app-sidebar"
+            aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
             onClick={() => setMobileOpen((open) => !open)}
           >
-            Menu
+            <span className="burger-line" />
+            <span className="burger-line" />
+            <span className="burger-line" />
           </button>
         </div>
         <Outlet />

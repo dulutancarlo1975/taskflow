@@ -35,15 +35,7 @@ export default function Dashboard() {
 
   return (
     <PageShell className="page-main--app">
-      <PageOverview
-        purpose="The Dashboard serves as the main overview page of the system. It displays summarized information about task progress, including total, completed, pending, and in-progress counts, plus a recent tasks list for quick monitoring."
-        workflow="After successful login, users land on the Dashboard for a quick overview of task status and overall productivity before navigating to the Tasks page for full management."
-        flowPath={
-          <>
-            <strong>Flow:</strong> Login → <em>Dashboard</em> → Tasks → Create/Edit/Delete/Track Tasks → Database
-          </>
-        }
-      />
+      
 
       {error && (
         <div className="error-msg ui-alert ui-fade-in" role="alert">
@@ -71,9 +63,6 @@ export default function Dashboard() {
                     Recently created or updated tasks for quick monitoring.
                   </p>
                 </div>
-                <Button variant="primary" to="/tasks">
-                  Manage Tasks
-                </Button>
               </div>
 
               {recentTasks.length === 0 ? (

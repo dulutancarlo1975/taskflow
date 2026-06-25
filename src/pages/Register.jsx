@@ -33,26 +33,18 @@ export default function Register() {
 
   return (
     <PageShell centered>
-      <PageOverview
-        purpose="The Registration Page lets new users create a TaskFlow account by providing their name, email, and password. It establishes identity before accessing the task management system."
-        workflow='Users arrive here from the Landing Page via "Get Started." On successful registration, credentials are stored locally and the user is signed in automatically, then redirected to the Dashboard to begin managing tasks.'
-        flowPath={
-          <>
-            <strong>Flow:</strong> Landing → <em>Register</em> → Dashboard
-          </>
-        }
-      />
+    
 
       <section className="auth-section" aria-labelledby="register-heading">
         <AuthPanel
           headingId="register-heading"
           title="Register"
-          hint="Create your account to access the task dashboard."
+          hint="Create an account to access the task dashboard."
         >
           <Alert variant="error">{error}</Alert>
           <form id="register-form" onSubmit={handleSubmit} noValidate>
             <FormField id="name" label="Full Name" required>
-              <TextInput type="text" id="name" name="name" required placeholder="John Carlo R. Dulutan" autoComplete="name" />
+              <TextInput type="text" id="name" name="name" required placeholder="Enter your name" autoComplete="name" />
             </FormField>
             <FormField id="email" label="Email" required>
               <TextInput type="email" id="email" name="email" required placeholder="you@example.com" autoComplete="email" />
