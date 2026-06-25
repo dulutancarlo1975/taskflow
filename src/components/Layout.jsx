@@ -1,16 +1,14 @@
-import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Button from './ui/Button';
 
 const navLinkClass = ({ isActive }) => (isActive ? 'is-active' : undefined);
 
 export default function Layout() {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
+  const { user } = useAuth();
 
-  function handleLogout() {
-    logout();
-    navigate('/login');
+  if (user) {
+    return <Outlet />;
   }
 
   return (
@@ -34,9 +32,6 @@ export default function Layout() {
             <NavLink to="/" end className={navLinkClass}>
               Home
             </NavLink>
-            <NavLink to="/dashboard" className={navLinkClass}>
-              Dashboard
-            </NavLink>
             <NavLink to="/about" className={navLinkClass}>
               About
             </NavLink>
@@ -45,23 +40,12 @@ export default function Layout() {
             </NavLink>
           </nav>
           <div className="header-actions">
-            {user ? (
-              <>
-                <span className="user-greeting">Hello, {user.name}</span>
-                <Button variant="secondary" size="sm" onClick={handleLogout}>
-                  Log Out
-                </Button>
-              </>
-            ) : (
-              <>
-                <Button variant="secondary" size="sm" to="/login">
-                  Log In
-                </Button>
-                <Button variant="primary" size="sm" to="/register">
-                  Get Started
-                </Button>
-              </>
-            )}
+            <Button variant="secondary" size="sm" to="/login">
+              Log In
+            </Button>
+            <Button variant="primary" size="sm" to="/register">
+              Get Started
+            </Button>
           </div>
         </div>
       </header>
