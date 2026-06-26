@@ -1,18 +1,19 @@
-# TaskFlow - Transactional Task Manager
+# Work Buddy - Transactional Task Manager
 
 <p align="center">
-	<img src="images/logo.png" alt="TaskFlow Logo" width="160" />
+	<img src="images/logo2.jpg" alt="Work Buddy Logo" width="160" />
 </p>
 
-TaskFlow is a single integrated project for IT0043 that demonstrates a full CRUD transactional website using **React**, CSS, and a REST API.
+Work Buddy is a single integrated project for IT0043 that demonstrates a full CRUD transactional website using **React**, CSS, and a REST API. It helps individuals and teams organize tasks, track progress, and manage daily responsibilities in one simple platform.
 
 ## Framework Used
 
 | Technology | Role |
 |------------|------|
 | **React** | UI components and state management |
-| **React Router** | Client-side routing (6 pages as routes) |
+| **React Router** | Client-side routing (8 pages as routes) |
 | **Vite** | Dev server and production build tool |
+| **JSON Server** | Local REST API for task CRUD |
 
 ## Student Information
 
@@ -30,7 +31,7 @@ TaskFlow is a single integrated project for IT0043 that demonstrates a full CRUD
 ## Documentation & Submission
 
 - **Google Drive (Recording):** https://drive.google.com/drive/u/0/folders/1eIBsEIDLVXhuYQckKqNXRWukr0fTS_Jz
-- **TaskFlow Documentation (PDF):** [TaskFlow_Documentation.pdf](file:///C:/Users/dulut/OneDrive/Desktop/TaskFlow_Documentation.pdf)
+- **Work Buddy Documentation (PDF):** [TaskFlow_Documentation.pdf](file:///C:/Users/dulut/OneDrive/Desktop/TaskFlow_Documentation.pdf)
 
 ## Project Structure
 
@@ -41,12 +42,13 @@ taskflow/
 |-- src/
 |   |-- main.jsx            # React bootstrap
 |   |-- App.jsx             # Routes
-|   |-- pages/              # Landing, Register, Login, Dashboard, About, Contact
-|   |-- components/         # Layout, PageOverview, ProtectedRoute
+|   |-- pages/              # Landing, Register, Login, Dashboard, Tasks, About, Contact
+|   |-- components/         # Layout, AuthenticatedLayout, PageOverview, ProtectedRoute
 |   |-- context/            # AuthContext
 |   |-- services/           # API, auth, tasks
 |   `-- styles/styles.css
-|-- public/images/          # Static assets (logo)
+|-- images/                 # App assets (logo2.jpg, previews, backgrounds)
+|-- public/images/          # Static assets served by Vite
 |-- db.json                 # JSON Server database
 |-- package.json
 `-- README.md
@@ -59,7 +61,8 @@ taskflow/
 | Landing | `/` | Public entry — routes to Register or Login |
 | Registration | `/register` | New user signup → Dashboard |
 | Login | `/login` | Returning user auth → Dashboard |
-| Dashboard | `/dashboard` | Protected CRUD workspace ↔ REST API |
+| Dashboard | `/dashboard` | Protected overview with task stats |
+| Tasks | `/tasks` | Protected CRUD workspace ↔ REST API |
 | About | `/about` | Project info, accessible from all pages |
 | Contact | `/contact` | Inquiry form, accessible from all pages |
 
@@ -152,4 +155,3 @@ Output goes to the `dist/` folder. Deploy `dist/` to GitHub Pages for the live s
 
 - HTML Validator: [https://validator.w3.org/](https://validator.w3.org/)
 - CSS Validator: [https://jigsaw.w3.org/css-validator/](https://jigsaw.w3.org/css-validator/)
-
